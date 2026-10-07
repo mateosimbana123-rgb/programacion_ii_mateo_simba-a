@@ -1,0 +1,435 @@
+```gitignore
+# ============================================================
+# .gitignore - PROGRAMACIÓN II
+# Proyectos y subproyectos Python / Django / Odoo
+# ============================================================
+#
+# Este archivo se coloca en la raíz del repositorio.
+# Las reglas aplican a carpetas y subcarpetas.
+#
+# ============================================================
+
+
+# ============================================================
+# PYTHON
+# ============================================================
+
+# Archivos compilados
+__pycache__/
+**/__pycache__/
+
+*.py[cod]
+*.pyo
+*.pyd
+*$py.class
+
+# Archivos de cache
+.pytest_cache/
+**/.pytest_cache/
+
+.mypy_cache/
+**/.mypy_cache/
+
+.ruff_cache/
+**/.ruff_cache/
+
+.pyre/
+**/.pyre/
+
+.pytype/
+**/.pytype/
+
+.hypothesis/
+**/.hypothesis/
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+
+# ============================================================
+# ENTORNOS VIRTUALES
+# ============================================================
+
+venv/
+**/venv/
+
+.venv/
+**/.venv/
+
+env/
+**/env/
+
+ENV/
+**/ENV/
+
+env.bak/
+**/env.bak/
+
+venv.bak/
+**/venv.bak/
+
+
+# ============================================================
+# DJANGO
+# ============================================================
+
+# Base de datos local
+db.sqlite3
+**/db.sqlite3
+
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+
+# Archivos estáticos generados
+staticfiles/
+**/staticfiles/
+
+static_root/
+**/static_root/
+
+# Archivos media generados por el servidor
+media/
+**/media/
+
+# Configuración local
+local_settings.py
+**/local_settings.py
+
+settings.local.py
+**/settings.local.py
+
+# Logs de Django
+*.log
+logs/
+**/logs/
+
+
+# ============================================================
+# ODOO
+# ============================================================
+
+# Configuración local de Odoo
+odoo.conf
+**/odoo.conf
+
+# Logs
+odoo.log
+**/odoo.log
+
+# Filestore
+filestore/
+**/filestore/
+
+# Sesiones
+sessions/
+**/sessions/
+
+# Archivos temporales de Odoo
+*.pid
+*.sock
+
+# Datos y respaldos locales
+*.dump
+*.backup
+*.sql
+*.sql.gz
+
+# Directorios temporales
+runtime/
+**/runtime/
+
+run/
+**/run/
+
+
+# ============================================================
+# VARIABLES DE ENTORNO Y CONTRASEÑAS
+# ============================================================
+
+.env
+**/.env
+
+.env.local
+**/.env.local
+
+.env.development
+**/.env.development
+
+.env.production
+**/.env.production
+
+.env.test
+**/.env.test
+
+# Mantener archivos de ejemplo
+!.env.example
+!.env.sample
+
+
+# ============================================================
+# ARCHIVOS DE CREDENCIALES
+# ============================================================
+
+credentials.json
+**/credentials.json
+
+secrets.json
+**/secrets.json
+
+service-account.json
+**/service-account.json
+
+*.secret
+*.token
+*.password
+
+
+# ============================================================
+# IDE / EDITORES
+# ============================================================
+
+# Visual Studio Code
+.vscode/
+**/.vscode/
+
+# PyCharm / IntelliJ
+.idea/
+**/.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse
+.project
+.pydevproject
+
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+
+
+# ============================================================
+# SISTEMA OPERATIVO
+# ============================================================
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+.nfs*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+
+# ============================================================
+# LOGS
+# ============================================================
+
+*.log
+**/*.log
+
+logs/
+**/logs/
+
+*.log.*
+*.log.gz
+
+
+# ============================================================
+# ARCHIVOS TEMPORALES
+# ============================================================
+
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+
+tmp/
+**/tmp/
+
+temp/
+**/temp/
+
+
+# ============================================================
+# BUILD / DISTRIBUCIÓN PYTHON
+# ============================================================
+
+build/
+**/build/
+
+dist/
+**/dist/
+
+*.egg
+*.egg-info/
+**/*.egg-info/
+
+.eggs/
+**/.eggs/
+
+*.whl
+
+
+# ============================================================
+# TESTING
+# ============================================================
+
+.coverage
+.coverage.*
+
+coverage.xml
+htmlcov/
+**/htmlcov/
+
+.tox/
+**/.tox/
+
+.nox/
+**/.nox/
+
+
+# ============================================================
+# NODE.JS
+# Útil para proyectos con frontend
+# ============================================================
+
+node_modules/
+**/node_modules/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.npm/
+.yarn/
+.pnpm-store/
+
+
+# ============================================================
+# FRONTEND / BUILD
+# ============================================================
+
+.next/
+**/.next/
+
+.nuxt/
+**/.nuxt/
+
+
+# ============================================================
+# DOCKER
+# ============================================================
+
+docker-data/
+**/docker-data/
+
+docker-volumes/
+**/docker-volumes/
+
+docker-compose.override.yml
+**/docker-compose.override.yml
+
+
+# ============================================================
+# BASES DE DATOS LOCALES
+# ============================================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Journals de SQLite
+*.sqlite-journal
+*.sqlite3-journal
+
+
+# ============================================================
+# BACKUPS
+# ============================================================
+
+backup/
+**/backup/
+
+backups/
+**/backups/
+
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+
+
+# ============================================================
+# CERTIFICADOS Y CLAVES PRIVADAS
+# ============================================================
+
+*.pem
+*.key
+*.p12
+*.pfx
+
+
+# ============================================================
+# ARCHIVOS DE DEPURACIÓN
+# ============================================================
+
+*.stackdump
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# ============================================================
+# ARCHIVOS LOCALES DE PYTHON
+# ============================================================
+
+.python-version
+**/.python-version
+
+.python-version.local
+
+
+# ============================================================
+# UV
+# ============================================================
+
+.uv/
+**/.uv/
+
+
+# ============================================================
+# ARCHIVOS GENERADOS POR SISTEMAS
+# ============================================================
+
+.cache/
+**/.cache/
+
+.history/
+**/.history/
+
+
+# ============================================================
+# FIN DEL ARCHIVO
+# ============================================================
+```

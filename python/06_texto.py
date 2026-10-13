@@ -62,3 +62,13 @@ print("El último caracter del droide es:", droide[-1])
 planeta = "Naboo"
 print("El planeta es:", + planeta)
 print("EL planeta sin espacios es:", planeta.strip())
+print("El mensaje en mayúsculas es: + mensaje_mayusculas")
+
+
+mensaje_minusculas = mensaje.lower()
+print("El mensaje en minúsculas es: " + mensaje_minusculas)
+comunicado = "Los Jedi son enviados a Naboo."
+print("El comunicado es: + comunicado")
+nuevo_comunicado = comunicado.replace("Naboo", "Tatooine")
+print("El nuevo comunicado es: + nuevo_comunicado")
+planetas= "Naboo, Tatooine, Coruscant, Alderaan"

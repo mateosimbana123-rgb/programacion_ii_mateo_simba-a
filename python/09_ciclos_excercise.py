@@ -1,7 +1,7 @@
 """
 control de Flota de naboo
 """
-naves[
+naves = [
     {
     "nombre": "Caza N-1",
     "combustible": 80,
@@ -38,8 +38,8 @@ for numero, nave in enumerate (naves, start = 1):
         total_ciclos += ciclo
         print("Recarga Completada")
         print("Estado Final: LISTA")
-    total_droides=len(nave["droides"])
-    for droide in nave ["droide"]:
+    total_droides += len(nave["droides"])
+    for droide in nave ["droides"]:
         print(f"droide:{droide}")
 
 print("=================================")
@@ -47,6 +47,6 @@ print("RESUMEN")
 print("=================================")
 print(f"Total naves: {len(naves)}")
 print(f"Naves listas inicialmente: {naves_listas}")
-print(f"Naves recargadas: {naves_recarga}")
+print(f"Naves recargadas: {naves_recargada}")
 print(f"Total Droides: {total_droides}")
 print(f"Total Ciclos: {total_ciclos}")

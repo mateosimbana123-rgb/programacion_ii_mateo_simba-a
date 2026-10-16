@@ -39,31 +39,31 @@ print(multiplicador,"x 8 =", multiplicador * 8)
 print(multiplicador,"x 9 =", multiplicador * 9)
 print(multiplicador,"x 10 =", multiplicador * 10)
 
-# 1. Solicitar el peso del paquete en kilogramos (permite decimales)
+# Solicitar el peso del paquete en kilogramos permite decimales
 peso = float(input("Ingrese el peso del paquete en kilogramos: "))
 
-# 2. Solicitar la zona de destino (número del 1 al 3)
+# Solicitar la zona de destino número del 1 al 3
 zona = int(input("Ingrese la zona de destino (1, 2 o 3): "))
 
-# 3. Calcular el costo según la zona
+# Calcular el costo según la zona
 if zona == 1:
     precio_por_kilo = 5.0
     costo_total = peso * precio_por_kilo
-# 4. Muestre en pantalla el costo final del envío
+# Muestre en pantalla el costo final del envío
     print(f"El costo final del envío a la Zona 1 (América) es: ${costo_total:.2f}")
 
 elif zona == 2:
     precio_por_kilo = 7.5
     costo_total = peso * precio_por_kilo
-# 4. Muestre en pantalla el costo final del envío
+# Muestre en pantalla el costo final del envío
     print(f"El costo final del envío a la Zona 2 (Europa) es: ${costo_total:.2f}")
 
 elif zona == 3:
     precio_por_kilo = 10.0
     costo_total = peso * precio_por_kilo
-# 4. Muestre en pantalla el costo final del envío
+# Muestre en pantalla el costo final del envío
     print(f"El costo final del envío a la Zona 3 (Resto del mundo) es: ${costo_total:.2f}")
 
 else:
-# Mensaje de error si la zona no es válida (no realiza el cálculo)
+# Mensaje de error si la zona no es válida no realiza el cálculo
     print("Error: La zona ingresada no es válida. Debe elegir un número entre 1 y 3.")

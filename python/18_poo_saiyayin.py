@@ -1,0 +1,20 @@
+from 17_poo_guerrero import Guerrero
+
+Class Saiyayin (Guerrero):
+    nombre: str
+    def __init__(self, nombre: str):
+        self.nombre = nombre
+
+    def presentarse(self):
+        print("Mi poderoso nombre es:", self.nombre)
+
+class Saiyajin (Guerrero):
+    def __init__(self, nombre: str):
+        super().__init__(nombre)
+
+    def transformarse(self):
+        print(self.nombre, "se transforma en Super Saiyajin")
+
+goku = Saiyajin ("Goku")
+goku.presentarse()
+goku.transformarse()

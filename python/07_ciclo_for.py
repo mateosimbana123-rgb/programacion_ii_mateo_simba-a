@@ -8,13 +8,15 @@ naves=[
 for nave in naves:
     print("Inspecionando", nave)
 
-prin("inspección realizada")
+print("inspección realizada")
+
+rondas = []
 
 print("Tipo de Rondas:", type (rondas))
 
 for ronda in rondas:
-print(f"Ronda de vigilancia: {ronda}")
-print(f"Tipo de dato ronda: {type(ronda)}")
+    print(f"Ronda de vigilancia: {ronda}")
+    print(f"Tipo de dato ronda: {type(ronda)}")
 
 droides = range(1,17,3)
 
@@ -43,10 +45,10 @@ paises = [
     "Estados Unidos"
 ]
 
-for pais in paises
-    if pais == "Chile"
+for pais in paises:
+    if pais == "Chile":
        continue
-    if pais == "Brasil"
+    if pais == "Brasil":
        break
     print(f"Pais visitado:{pais}")
 
@@ -56,7 +58,7 @@ jedi_activo = {
     "fuerza": "120",
     "estilo_pelea": "Samurai",
     "misiones": ["Guerra alderan", "secuestro palpatine", "escolta de leia"],
-    "descripcion";{
+    "descripcion": {
         "estatura": 1.80,
         "especie": "humana"
     }
@@ -70,4 +72,4 @@ jedi["fuerza"] = 150
 print(jedi)
 
 for clave, valor in jedi_activo.items():
-    print(f"{clave} - {valor}")
+    print(f"{clave}{valor}")

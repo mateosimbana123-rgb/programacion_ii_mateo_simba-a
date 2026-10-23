@@ -1,4 +1,17 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+
+def home (request):
+    """Vista de bienvenida de la app tasks."""
+    return HttpResponse("""
+        <html>
+            <body>
+                <h1>TaskFlow</h1>
+                <p>Bienvenido al sistema</p>
+            </body>
+        </html>
+
+    """)
 
 def home(request):
     return HttpResponse("Bienvenido a TaskFlow")
@@ -24,3 +37,11 @@ def base_triangulo(request, base, altura):
 
 def my_first_template(request):
     return HttpResponse("Mi primera plantilla")
+
+def leads_like(request):
+    contexto={
+        "titulo": "Programador",
+        "nombre": "Mateo",
+        "apellido": "Simbaña",
+    }
+    return render(request, "leads/leads-like.html",contexto)

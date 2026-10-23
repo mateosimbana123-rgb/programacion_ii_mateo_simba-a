@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}TaskFlow{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'tasks/css/estilos.css' %}">
+    <title>Document</title>
 </head>
 <body>
-    <nav class="navbar">
-        <strong>TaskFlow</strong>
-        <a href="{% url 'tasks:home' %}">Inicio</a>
-    </nav>
-
-    <main class="contenido">
-        {% block content %}{% endblock %}
-    </main>
+    <p>Bienvenido a {{ titulo }}</p>
+    <p>{{ mensaje }}</p>
 </body>
 </html>

@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_title|default:"OXNARD - Executive Coach & Business Advisor" }}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Configuración personalizada de colores basados en la imagen -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#1e302b',    // Verde petróleo oscuro principal (Hero y botones)
+                            light: '#f5f7f6',   // Fondo claro ligeramente menta/gris
+                            muted: '#6b7c76',   // Texto secundario/subtítulos
+                            accent: '#2f4841',  // Hover de botones
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Tipografía y ajustes finos estilo editorial */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2b302e;
+            background-color: #e2eeeb; /* Color de fondo exterior responsive */
+        }
+    </style>
+</head>
+<body class="p-0 sm:p-4 md:p-8 min-h-screen flex items-center justify-center">
+
+    <!-- Wrapper Principal (Simula la tarjeta central centrada del diseño) -->
+    <main class="w-full max-w-6xl bg-white rounded-none sm:rounded-2xl shadow-2xl overflow-hidden my-0 sm:my-4">
+        
+        <!-- ========================================== -->
+        <!-- 1. HERO SECTION (Fondo Verde Petróleo) -->
+        <!-- ========================================== -->
+        <section class="bg-brand-dark text-white relative overflow-hidden" id="home">
+            <!-- Navigation -->
+            <nav class="max-w-6xl mx-auto px-6 pt-6 pb-4 flex justify-between items-center text-xs sm:text-sm tracking-widest uppercase">
+                <a href="/" class="font-bold tracking-wider hover:opacity-80 transition-opacity">
+                    {{ brand_name|default:"OXNARD" }}
+                </a>
+                <div class="flex items-center space-x-6 text-slate-300 font-light">
+                    <a href="#about" class="hover:text-white transition-colors">HOME</a>
+                    <a href="tel:{{ phone_number|default:'+12345678910' }}" class="hover:text-white transition-colors">
+                        {{ phone_number|default:"+1 234 567 8910" }}
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Hero Body Grid -->
+            <div class="max-w-6xl mx-auto px-6 pt-8 pb-0 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+                <!-- Columna Izquierda: Imagen del Profesional -->
+                <div class="md:col-span-6 flex justify-center md:justify-start -mb-2">
+                    <img 
+                        src="{% static 'images/hero-coach.jpg' %}" 
+                        alt="{{ hero_image_alt|default:'Executive Coach' }}" 
+                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80';"
+                        class="w-full max-w-md object-cover object-top h-[380px] sm:h-[450px] md:h-[500px]"
+                    />
+                </div>
+
+                <!-- Columna Derecha: Título y Copys Dinámicos -->
+                <div class="hero-content md:col-span-6 pb-12 sm:pb-16 md:pb-24">
+                    <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold block mb-2">Leadership</span>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-4 tracking-tight">
+                        {{ titulo|default:"Executive coach" }} <span class="block text-slate-200 mt-1">{{ nombre }} {{ apellido }}</span>
+                    </h1>
+                    <p class="hero-description text-slate-300 text-base sm:text-lg font-light max-w-lg leading-relaxed">
+                        {{ hero_description|default:"Unlock your leadership potential and grow with expert coaching tailored to your professional journey." }}
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 2. TESTIMONIAL SECTION (Fondo Claro) -->
+        <!-- ========================================== -->
+        <section class="bg-brand-light py-16 px-6 text-center border-b border-gray-100">
+            <div class="max-w-2xl mx-auto flex flex-col items-center">
+                
+                <!-- Avatar del Cliente con Badge de Comillas -->
+                <div class="relative mb-4">
+                    <img 
+                        src="{% static 'images/client-avatar.jpg' %}" 
+                        alt="{{ testimonial.author|default:'Client' }}"
+                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80';"
+                        class="w-20 h-20 rounded-full object-cover shadow-md border-2 border-white"
+                    />
+                    <div class="absolute bottom-0 right-0 bg-brand-dark text-white rounded-full p-1.5 shadow">
+                        <i data-lucide="quote" class="w-3.5 h-3.5 fill-current"></i>
+                    </div>
+                </div>
+
+                <!-- Nombre del Cliente -->
+                <h3 class="text-sm font-semibold tracking-wide text-gray-700 uppercase mb-3">
+                    {{ testimonial.author|default:"Client name" }}
+                </h3>
+
+                <!-- Cita / Testimonio -->
+                <blockquote class="text-xs sm:text-sm text-gray-500 font-serif leading-relaxed italic max-w-md">
+                    "{{ testimonial.text|default:"This is a testimonial. Editing your testimonial is easy. Simply highlight the text and replace it with your own content." }}"
+                </blockquote>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 3. FEATURES / ABOUT SECTION (Fondo Blanco) -->
+        <!-- ========================================== -->
+        <section id="about" class="bg-white py-16 sm:py-20 px-6 lg:px-12">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                
+                <!-- Columna Izquierda: Información y Lista de Features -->
+                <div class="md:col-span-6 space-y-6">
+                    <div>
+                        <!-- Superscript / Categoria -->
+                        <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold block mb-2">
+                            {{ section_superscript|default:"SUPERSCRIPT" }}
+                        </span>
+                        
+                        <!-- Título Principal de Bloque -->
+                        <h2 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug mb-3">
+                            {{ section_title|default:"Block title. Replace it with own content" }}
+                        </h2>
+                        
+                        <!-- Subtítulo -->
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">
+                            {{ section_subtitle|default:"Add your own block subtitle" }}
+                        </h3>
+                        
+                        <!-- Descripción -->
+                        <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                            {{ section_description|default:"This is a block description. To edit this description, click on the text and replace it with your own content." }}
+                        </p>
+                    </div>
+
+                    <!-- Bucle Django Dynamic Features -->
+                    <div class="space-y-6 pt-2">
+                        {% if features %}
+                            {% for feature in features %}
+                                <div class="flex items-start space-x-4">
+                                    <div class="text-brand-dark p-1">
+                                        <i data-lucide="{{ feature.icon|default:'check-circle' }}" class="w-6 h-6 stroke-1"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-gray-800">{{ feature.title }}</h4>
+                                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">{{ feature.description }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <!-- Features estáticos por defecto (Fallback) -->
+                            <div class="flex items-start space-x-4">
+                                <div class="text-brand-dark pt-1">
+                                    <i data-lucide="user-check" class="w-6 h-6 stroke-[1.5]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-800">Feature 1</h4>
+                                    <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                                        Add more detail about this feature, such as benefits, appearance, components
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="text-brand-dark pt-1">
+                                    <i data-lucide="credit-card" class="w-6 h-6 stroke-[1.5]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-800">Feature 2</h4>
+                                    <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                                        Add more detail about this feature, such as benefits, appearance, components
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Botón Destacado -->
+                    <div class="pt-4">
+                        <a href="{{ button_url|default:'#' }}" class="inline-block bg-brand-dark text-white text-xs font-semibold tracking-wider uppercase px-8 py-3.5 rounded hover:bg-brand-accent transition-colors shadow-sm">
+                            {{ button_text|default:"BUTTON 1" }}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Imagen Secundaria Cuadrada -->
+                <div class="md:col-span-6 flex justify-center md:justify-end">
+                    <div class="w-full max-w-md aspect-[4/5] bg-gray-100 overflow-hidden shadow-lg rounded-sm">
+                        <img 
+                            src="{% static 'images/feature-coach.jpg' %}" 
+                            alt="{{ feature_image_alt|default:'Business advisor looking at watch' }}"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80';"
+                            class="w-full h-full object-cover object-center"
+                        />
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Inicializar iconos de Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

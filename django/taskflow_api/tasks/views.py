@@ -1,31 +1,47 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
-from django.http import HttpResponse
+def home (request):
+    """Vista de bienvenida de la app tasks."""
+    return HttpResponse("""
+        <html>
+            <body>
+                <h1>TaskFlow</h1>
+                <p>Bienvenido al sistema</p>
+            </body>
+        </html>
+
+    """)
 
 def home(request):
-    """Vista de bienvenida de la app tasks."""
-    return HttpResponse("Hola, TaskFlow")
+    return HttpResponse("Bienvenido a TaskFlow")
 
 def register(request):
-    """Registro de usuarios"""
-    return HttpResponse("Registro de Usuarios en Lista")
+    return HttpResponse("Registro de usuarios")
 
 def login(request):
-    """Login de usuarios"""
-    return HttpResponse("Login de usuarios en aplicacion")
+    return HttpResponse("Login de Usuarios en aplicacion")
 
-def greeting (request, nombre):
-    """Regisytro de usuarios"""
-    return HttpRespose(
-    f"Hola{nombre}, bienvenido a taskflow")
+def aboutme(request):
+    return HttpResponse("Acerca de mí")
+
+def greeting(request, nombre):
+    return HttpResponse(f"Hola {nombre}, bienvenido a taskflow")
 
 def destination(request, titulo, nombre, cargo):
-    """Regisytro de usuarios"""
-    return HttpRespose(
-        f"Bienvenido:{titulo}{nombre}, tu cargo es:{cargo}"
+    return HttpResponse(f"Bienvenido: {titulo} {nombre}, su cargo es: {cargo}")
 
-def destination(request, base, altura):
-    """Registro de usuarios"""
-    return HttpRespose(
-        f"El area del triangulo es:{(base*altura)/2}")
+def base_triangulo(request, base, altura):
+    area = (int(base) * int(altura)) / 2
+    return HttpResponse(f"El área del triángulo es: {area}")
+
+def my_first_template(request):
+    return HttpResponse("Mi primera plantilla")
+
+def leads_like(request):
+    contexto={
+        "titulo": "Programador",
+        "nombre": "Mateo",
+        "apellido": "Simbaña",
+    }
+    return render(request, "leads/leads-like.html",contexto)

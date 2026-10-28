@@ -1,4 +1,3 @@
-# tasks/models.py
 from django.db import models
 
 
@@ -10,23 +9,26 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-class Nave (models. Model):
+
+class Nave(models.Model):
     nombre = models.CharField(max_length=100)
     tipo_nave = models.TextField(blank=True)
     combustible = models.TextField(blank=True)
-    created_at = models. DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.nombre
 
-class Comida (models.Model):
-    nombre_comida = models. CharField(max_length=100)
-    categoria = models.TextField(blank=True)
-    ingredientes = models. TextField(blank=True)
-    created_at = models. DateTimeField(auto_now_add=True)
 
-    def _str_(self):
+class Comida(models.Model):
+    nombre_comida = models.CharField(max_length=100)
+    categoria = models.TextField(blank=True)
+    ingredientes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
         return self.nombre_comida
+
 
 class Carpinteria(models.Model):
     nombre = models.CharField(max_length=100)
@@ -36,3 +38,108 @@ class Carpinteria(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}" 
+
+
+class Sensei(models.Model):
+    nombre = models.CharField(max_length=100)
+    edad = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.nombre
+
+
+class Mision(models.Model):
+    titulo = models.CharField(max_length=100)
+    descripcion = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
+
+
+class Alumno(models.Model):
+    sensei = models.ForeignKey(
+        Sensei,
+        on_delete=models.CASCADE,
+        related_name="alumnos"
+    )
+    nombre = models.CharField(max_length=100)
+    edad = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    misiones = models.ManyToManyField(Mision, related_name="alumnos")
+
+    def __str__(self):
+        return self.nombre
+
+
+class Perfil(models.Model):
+    alumno = models.OneToOneField(Alumno, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to='perfiles/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Perfil de {self.alumno.nombre}"
+
+
+class Estudiante(models.Model):
+    nombre = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nombre
+
+
+class Actividad(models.Model):
+    titulo = models.CharField(max_length=100)
+    objetivo = models.CharField(max_length=300)  
+
+    estudiantes = models.ManyToManyField(
+        Estudiante, 
+        through="Participacion"
+    )
+
+    def __str__(self):
+        return self.titulo
+
+
+class Participacion(models.Model):
+    estudiante = models.ForeignKey(
+        Estudiante, 
+        on_delete=models.CASCADE
+    )
+    actividad = models.ForeignKey(
+        Actividad,  
+        on_delete=models.CASCADE
+    )
+    rol = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.estudiante.nombre} - {self.rol}"
+
+class Task(models.Model):
+    class Status(models.TextChoices):
+        TODO = "TODO", "Por hacer"
+        IN_PROGRESS = "IN_PROGRESS", "En progreso"
+        DONE = "DONE", "Completada"
+
+    # ForeignKey: cada Task pertenece a UN Project.
+    # Un Project puede tener MUCHAS Task — relación muchos a uno.
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name="tasks",
+    )
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.TODO,
+    )
+    due_date = models.DateField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

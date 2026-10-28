@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'taskflow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taskflow_db',         # Reemplaza con el nombre de tu base de datos en PostgreSQL
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',    # La contraseña correcta que tengas en PostgreSQL
-        'HOST': '127.0.0.1',             # Usa siempre '127.0.0.1' (nunca 'local_host')
-        'PORT': '5432',
+        'NAME': 'project_db',
+        'USER': 'mateo_simbana',
+        'PASSWORD': '',  
+        'HOST': 'localhost',
+        'PORT': '5433',  
     }
 }
 

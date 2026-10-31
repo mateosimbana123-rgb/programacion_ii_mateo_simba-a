@@ -75,17 +75,12 @@ WSGI_APPLICATION = 'taskflow.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-=======
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'project_db',
         'USER': 'mateo_simbana',
         'PASSWORD': '',  
         'HOST': 'localhost',
-        'PORT': '5433',  
->>>>>>> 343297e (feat(2026-10-28):Relaciones de tablas)
+        'PORT': '5433',
     }
 }
 

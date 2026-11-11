@@ -23,7 +23,7 @@ def login(request):
     return HttpResponse("Login de Usuarios en aplicacion")
 
 def aboutme(request):
-    return HttpResponse("Acerca de mí")
+    return HttpResponse("Acerca de mi")
 
 def greeting(request, nombre):
     return HttpResponse(f"Hola {nombre}, bienvenido a taskflow")
@@ -33,7 +33,7 @@ def destination(request, titulo, nombre, cargo):
 
 def base_triangulo(request, base, altura):
     area = (int(base) * int(altura)) / 2
-    return HttpResponse(f"El área del triángulo es: {area}")
+    return HttpResponse(f"El area del triangulo es: {area}")
 
 def my_first_template(request):
     return HttpResponse("Mi primera plantilla")
@@ -42,6 +42,6 @@ def leads_like(request):
     contexto={
         "titulo": "Programador",
         "nombre": "Mateo",
-        "apellido": "Simbaña",
+        "apellido": "Simbana",
     }
     return render(request, "leads/leads-like.html",contexto)

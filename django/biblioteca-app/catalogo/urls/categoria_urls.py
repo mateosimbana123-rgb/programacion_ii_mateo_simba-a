@@ -16,4 +16,9 @@ urlpatterns = [
     path('categorias/<int:pk>/eliminar/', 
             categoria_delete, 
             name='categoria_delete'),
+from catalogo.views.categoria_views import categoria_list, categoria_create
+
+urlpatterns = [
+    path('categorias/', categoria_list, name='categoria_list'),
+    path('catalogo/nueva/', categoria_create, name='categoria_create'),
 ]

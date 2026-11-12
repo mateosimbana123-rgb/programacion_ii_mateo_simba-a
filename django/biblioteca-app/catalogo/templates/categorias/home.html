@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">  
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+    </head>
+    <body>
+        <h1>Inicio</h1>
+        <p>Bienvenido Sr(a). {{request.user.get_full_name}} a la aplicación</p>
+        <p>Desde aqui puedes gestionar los libros disponibles en la biblioteca.</p>
+        <h2>Menú Principal</h2>
+        <ul>
+            <li><a href="{% url 'libro_list' %}">lista de libros</a></li>
+            <li><a href="{% url 'categoria_list' %}">lista de categorías</a></li>
+        </ul>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+    </body>
+</html>

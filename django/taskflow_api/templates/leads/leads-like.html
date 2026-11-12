@@ -5,21 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site_title|default:"OXNARD - Executive Coach & Business Advisor" }}</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Configuración personalizada de colores basados en la imagen -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#1e302b',    // Verde petróleo oscuro principal (Hero y botones)
-                            light: '#f5f7f6',   // Fondo claro ligeramente menta/gris
-                            muted: '#6b7c76',   // Texto secundario/subtítulos
-                            accent: '#2f4841',  // Hover de botones
+                            dark: '#1e302b',    
+                            light: '#f5f7f6',   
+                            muted: '#6b7c76',   
+                            accent: '#2f4841',  
                         }
                     },
                     fontFamily: {
@@ -31,22 +28,17 @@
         }
     </script>
     <style>
-        /* Tipografía y ajustes finos estilo editorial */
         body {
             font-family: 'Inter', sans-serif;
             color: #2b302e;
-            background-color: #e2eeeb; /* Color de fondo exterior responsive */
+            background-color: #e2eeeb; 
         }
     </style>
 </head>
 <body class="p-0 sm:p-4 md:p-8 min-h-screen flex items-center justify-center">
 
-    <!-- Wrapper Principal (Simula la tarjeta central centrada del diseño) -->
     <main class="w-full max-w-6xl bg-white rounded-none sm:rounded-2xl shadow-2xl overflow-hidden my-0 sm:my-4">
         
-        <!-- ========================================== -->
-        <!-- 1. HERO SECTION (Fondo Verde Petróleo) -->
-        <!-- ========================================== -->
         <section class="bg-brand-dark text-white relative overflow-hidden" id="home">
             <!-- Navigation -->
             <nav class="max-w-6xl mx-auto px-6 pt-6 pb-4 flex justify-between items-center text-xs sm:text-sm tracking-widest uppercase">
@@ -61,9 +53,7 @@
                 </div>
             </nav>
 
-            <!-- Hero Body Grid -->
             <div class="max-w-6xl mx-auto px-6 pt-8 pb-0 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-                <!-- Columna Izquierda: Imagen del Profesional -->
                 <div class="md:col-span-6 flex justify-center md:justify-start -mb-2">
                     <img 
                         src="{% static 'images/hero-coach.jpg' %}" 
@@ -73,7 +63,6 @@
                     />
                 </div>
 
-                <!-- Columna Derecha: Título y Copys Dinámicos -->
                 <div class="hero-content md:col-span-6 pb-12 sm:pb-16 md:pb-24">
                     <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold block mb-2">Leadership</span>
                     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-4 tracking-tight">
@@ -86,10 +75,6 @@
             </div>
         </section>
 
-
-        <!-- ========================================== -->
-        <!-- 2. TESTIMONIAL SECTION (Fondo Claro) -->
-        <!-- ========================================== -->
         <section class="bg-brand-light py-16 px-6 text-center border-b border-gray-100">
             <div class="max-w-2xl mx-auto flex flex-col items-center">
                 
@@ -118,22 +103,15 @@
             </div>
         </section>
 
-
-        <!-- ========================================== -->
-        <!-- 3. FEATURES / ABOUT SECTION (Fondo Blanco) -->
-        <!-- ========================================== -->
         <section id="about" class="bg-white py-16 sm:py-20 px-6 lg:px-12">
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
                 
-                <!-- Columna Izquierda: Información y Lista de Features -->
                 <div class="md:col-span-6 space-y-6">
                     <div>
-                        <!-- Superscript / Categoria -->
                         <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold block mb-2">
                             {{ section_superscript|default:"SUPERSCRIPT" }}
                         </span>
                         
-                        <!-- Título Principal de Bloque -->
                         <h2 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug mb-3">
                             {{ section_title|default:"Block title. Replace it with own content" }}
                         </h2>
@@ -149,7 +127,6 @@
                         </p>
                     </div>
 
-                    <!-- Bucle Django Dynamic Features -->
                     <div class="space-y-6 pt-2">
                         {% if features %}
                             {% for feature in features %}
@@ -164,7 +141,6 @@
                                 </div>
                             {% endfor %}
                         {% else %}
-                            <!-- Features estáticos por defecto (Fallback) -->
                             <div class="flex items-start space-x-4">
                                 <div class="text-brand-dark pt-1">
                                     <i data-lucide="user-check" class="w-6 h-6 stroke-[1.5]"></i>
@@ -191,7 +167,6 @@
                         {% endif %}
                     </div>
 
-                    <!-- Botón Destacado -->
                     <div class="pt-4">
                         <a href="{{ button_url|default:'#' }}" class="inline-block bg-brand-dark text-white text-xs font-semibold tracking-wider uppercase px-8 py-3.5 rounded hover:bg-brand-accent transition-colors shadow-sm">
                             {{ button_text|default:"BUTTON 1" }}
@@ -199,7 +174,6 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Imagen Secundaria Cuadrada -->
                 <div class="md:col-span-6 flex justify-center md:justify-end">
                     <div class="w-full max-w-md aspect-[4/5] bg-gray-100 overflow-hidden shadow-lg rounded-sm">
                         <img 

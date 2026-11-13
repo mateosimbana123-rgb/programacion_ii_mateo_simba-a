@@ -13,11 +13,22 @@
         {% endfor %}
     {% endif %}
     <p>
-        <a href="{% url 'categoria_crear' %}">
+    <button
+        <a href="{% url 'categoria_create' %}">
             Nueva categoría
         </a>
+    </button>
+    <button
+        <a href="{% url 'libro_list' %}">
+            lista de libros
+        </a>
+    </button>   
+    <button
+        <a href="{% url 'home' %}">
+            atras
+        </a>
     </p>
-
+    </button>
 
     <table border="1" cellpadding="8">
         <thead>
@@ -25,6 +36,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -33,10 +45,14 @@
                     <td>{{ categoria.id }}</td>
                     <td>{{ categoria.nombre }}</td>
                     <td>{{ categoria.descripcion }}</td>
+                    <td>
+                        <a href="{% url 'categoria_update' categoria.id %}">Editar</a>
+                        <a href="{% url 'categoria_delete' categoria.id %}">Eliminar</a>
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         No existen categorías registradas.
                     </td>
                 </tr>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from catalogo.forms.categoria_forms import CategoriaForm
+from catalogo.forms import CategoriaForm    
 from catalogo.models import Categoria
 from django.contrib.auth.decorators import login_required, permission_required
 

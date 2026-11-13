@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Autores</title>
+</head>
+<body>
+    <h1>Biblioteca</h1>
+<h2>Lista de Autores</h2>
+
+{% if messages %}
+    <ul>
+        {% for mensaje in messages %}
+            <li>{{ mensaje }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<button>
+    <a href="{% url 'create_autor' %}">Crear Nuevo Autor</a>
+</button>
+
+<button>
+    <a href="{% url 'categoria_list' %}">Lista de Categorías</a>
+</button>
+
+<button>
+    <a href="{% url 'home' %}">Atrás</a>
+</button>
+
+<h2>Buscar Autores</h2>
+
+<form method="GET">
+    <p>
+        <label for="pista">Buscar por nombre o apellido:</label>
+        <input type="text" id="pista" name="pista" value="{{ pista }}">
+    </p>
+
+    <p>
+        <label for="categoria_id">Categoría:</label>
+
+        <select id="categoria_id" name="categoria_id">
+            <option value="">Todas las categorías</option>
+
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}"
+                    {% if categoria.id|stringformat:"s" == categoria_id|stringformat:"s" %}
+                        selected
+                    {% endif %}>
+                    {{ categoria.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <button type="submit">Buscar</button>
+    <a href="{% url 'autor_list' %}">Limpiar filtros</a>
+</form>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nacionalidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for autor in autores %}
+            <tr>
+                <td>{{ autor.id }}</td>
+                <td>{{ autor.nombre }}</td>
+                <td>{{ autor.apellido }}</td>
+                <td>{{ autor.nacionalidad }}</td>
+
+                <td>
+                    <a href="{% url 'update_autor' autor.pk %}">Editar</a>
+
+                    {% if perms.catalogo.delete_autor %}
+                        <a href="{% url 'delete_autor' autor.pk %}">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% empty %}
+            <tr>
+                <td colspan="5">No hay autores disponibles.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                Total de autores: {{ autores|length }}
+            </td>
+        </tr>
+    </tfoot>
+</table>

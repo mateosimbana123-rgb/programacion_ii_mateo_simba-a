@@ -13,6 +13,7 @@
         <ul>
             <li><a href="{% url 'libro_list' %}">lista de libros</a></li>
             <li><a href="{% url 'categoria_list' %}">lista de categorías</a></li>
+            <li><a href="{% url 'autor_list' %}">lista de autores</a></li>
         </ul>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}

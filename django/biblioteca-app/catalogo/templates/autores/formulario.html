@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if form.instance.pk %}Editar libro{% else %}Crear libro{% endif %}</title>
+    <title>{% if form.instance.pk %}Editar autor{% else %}Crear autor{% endif %}</title>
 </head>
 <body>
-    <h1>{% if form.instance.pk %}Editar libro{% else %}Crear libro{% endif %}</h1>
+    <h1>{% if form.instance.pk %}Editar autor{% else %}Crear autor{% endif %}</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-            <button type="submit">Guardar libro</button>
+            <button type="submit">Guardar autor</button>
     </form>
 </body>
 </html>

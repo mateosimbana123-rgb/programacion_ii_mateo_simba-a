@@ -1,55 +1,64 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect, render
+
 from catalogo.forms import AutorForm
 from catalogo.models import Autor
-from django.contrib.h.decorators import login_required, permission_required
+
 
 @login_required
-@permission_required('catalogo.view_Autor', raise_exception=True)
+@permission_required('catalogo.view_autor', raise_exception=True)
 def Autor_list(request):
-    Autores = Autor.objects.all()
-    return render(request, 'Autor_list.html', 
-                    {'Autores': Autores})
+    pista = request.GET.get('pista', '').strip()
+    autores = Autor.objects.all()
+    if pista:
+        autores = autores.filter(
+            Q(nombre__icontains=pista) | Q(apellido__icontains=pista)
+        )
+    return render(request, 'autores/autor_list.html', {
+        'autores': autores,
+        'pista': pista,
+    })
+
 
 @login_required
-@permission_required('catalogo.add_Autor', raise_exception=True)
+@permission_required('catalogo.add_autor', raise_exception=True)
 def Autor_create(request):
     if request.method == 'POST':
         form = AutorForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Categoría creada exitosamente.')
-            return redirect('Autor_list')
+            messages.success(request, 'Autor creado exitosamente.')
+            return redirect('autor_list')
     else:
         form = AutorForm()
-    return render(request, 
-                    'catalogo/Autores/formulario.html', 
-                    {'form': form})
+    return render(request, 'autores/formulario.html', {'form': form})
+
 
 @login_required
-@permission_required('catalogo.change_Autor', raise_exception=True)
+@permission_required('catalogo.change_autor', raise_exception=True)
 def Autor_update(request, pk):
-    Autor = Autor.objects.get(pk=pk)
+    autor = get_object_or_404(Autor, pk=pk)
     if request.method == 'POST':
-        form = AutorForm(request.POST, instance=Autor)
+        form = AutorForm(request.POST, instance=autor)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Categoría actualizada exitosamente.')
-            return redirect('Autor_list')
+            messages.success(request, 'Autor actualizado exitosamente.')
+            return redirect('autor_list')
     else:
-        form = AutorForm(instance=Autor)
-    return render(request, 
-                    'catalogo/Autores/formulario.html', 
-                    {'form': form})
+        form = AutorForm(instance=autor)
+    return render(request, 'autores/formulario.html', {'form': form})
+
 
 @login_required
-@permission_required('catalogo.delete_Autor', raise_exception=True)
+@permission_required('catalogo.delete_autor', raise_exception=True)
 def Autor_delete(request, pk):
-    Autor = Autor.objects.get(pk=pk)
+    autor = get_object_or_404(Autor, pk=pk)
     if request.method == 'POST':
-        Autor.delete()
-        messages.success(request, 'Categoría eliminada exitosamente.')
-        return redirect('Autor_list')
-    return render(request, 
-                    'catalogo/Autores/Autor_confirm_delete.html', 
-                    {'Autor': Autor})
+        autor.delete()
+        messages.success(request, 'Autor eliminado exitosamente.')
+        return redirect('autor_list')
+    return render(request, 'autores/autor_confirm_delete.html', {
+        'autor': autor,
+    })

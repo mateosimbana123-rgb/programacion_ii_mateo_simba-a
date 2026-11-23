@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,43 +14,32 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <button>
-        <a href="{% url 'create_libro' %}">Crear Nuevo libro</a>
-
-    </button>
-    <button>
-        <a href="{% url 'categoria_list' %}">Lista de Categorías</a>
-    </button>
-    <button>
-        <a href="{% url 'home' %}">atras</a>
-    </button>
+    <p><a href="{% url 'create_libro' %}">Crear Nuevo libro</a></p>
+    <p><a href="{% url 'categoria_list' %}">Lista de Categorías</a></p>
+    <p><a href="{% url 'home' %}">Atrás</a></p>
     <h2>Buscar Libros</h2>
     <form method="GET">
         <p>
-            <label for="q">Buscar por titulo, autor o categoria
-            </label>
-            <input type="text" id="pista"  name="pista" value="{{pista}}">
+            <label for="pista">Buscar por título, autor o categoría</label>
+            <input type="text" id="pista" name="pista" value="{{ pista }}">
         </p>
         <p>
-            <label for="categoria">
-                Categoría
-            </label>
+            <label for="categoria_id">Categoría</label>
             <select id="categoria_id" name="categoria_id">
                 <option value="">Todas las categorías</option>
                 {% for categoria in categorias %}
-                    <option value="{{ categoria.id }}" 
-                    {% if categoria.id == categoria.id|stringformat:"s"%}
-                        select 
-                    {% endif %}
-                    >{{ categoria.nombre }}
+                    <option value="{{ categoria.id }}"
+                        {% if categoria.id|stringformat:"s" == categoria_id|stringformat:"s" %}selected{% endif %}>
+                        {{ categoria.nombre }}
                     </option>
                 {% endfor %}
             </select>
         </p>
+        <button type="submit">Buscar</button>
     </form>
     <table>
         <thead>
-            <tr>  
+            <tr>
                 <th>Título</th>
                 <th>Autor</th>
                 <th>Fecha de publicación</th>
@@ -61,27 +50,32 @@
             {% for libro in libros %}
                 <tr>
                     <td>{{ libro.titulo }}</td>
-                    <td>{{ libro.autor }}</td>
+                    <td>
+                        {% if libro.autores.exists %}
+                            {{ libro.autores.all|join:", " }}
+                        {% else %}
+                            {{ libro.autor }}
+                        {% endif %}
+                    </td>
                     <td>{{ libro.fecha_publicacion }}</td>
                     <td>
                         <a href="{% url 'update_libro' libro.pk %}">Editar</a>
-                        {%if perms.catalogo.delete_libro %}
+                        {% if perms.catalogo.delete_libro %}
                             <a href="{% url 'delete_libro' libro.pk %}">Eliminar</a>
                         {% endif %}
                     </td>
                 </tr>
-            {% empty %}  
+            {% empty %}
                 <tr>
                     <td colspan="4">No hay libros disponibles.</td>
                 </tr>
             {% endfor %}
         </tbody>
-        <tfoot>  
+        <tfoot>
             <tr>
-                <td colspan="4">total de libros: {{ libros|length }}</td>
+                <td colspan="4">Total de libros: {{ libros|length }}</td>
             </tr>
         </tfoot>
-
     </table>
-</body>       
+</body>
 </html>

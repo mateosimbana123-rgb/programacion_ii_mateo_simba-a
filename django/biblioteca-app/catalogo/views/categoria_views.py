@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from catalogo.forms import CategoriaForm    
 from catalogo.models import Categoria
@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 @permission_required('catalogo.view_categoria', raise_exception=True)
 def categoria_list(request):
     categorias = Categoria.objects.all()
-    return render(request, 'categoria_list.html', 
+    return render(request, 'catalogo/categorias/categoria_list.html',
                     {'categorias': categorias})
 
 @login_required
@@ -29,7 +29,7 @@ def categoria_create(request):
 @login_required
 @permission_required('catalogo.change_categoria', raise_exception=True)
 def categoria_update(request, pk):
-    categoria = Categoria.objects.get(pk=pk)
+    categoria = get_object_or_404(Categoria, pk=pk)
     if request.method == 'POST':
         form = CategoriaForm(request.POST, instance=categoria)
         if form.is_valid():
@@ -45,7 +45,7 @@ def categoria_update(request, pk):
 @login_required
 @permission_required('catalogo.delete_categoria', raise_exception=True)
 def categoria_delete(request, pk):
-    categoria = Categoria.objects.get(pk=pk)
+    categoria = get_object_or_404(Categoria, pk=pk)
     if request.method == 'POST':
         categoria.delete()
         messages.success(request, 'Categoría eliminada exitosamente.')

@@ -11,15 +11,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         <p>
-            <button type="submit">
-                Guardar categoría
-            </button>
-            <a href="{% url 'categoria_list' %}">
-                Cancelar
-            </a>
+            <button type="submit">Guardar categoría</button>
+            <a href="{% url 'categoria_list' %}">Cancelar</a>
         </p>
     </form>
 </body>
 </html>
-
-

@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-from 17_poo_guerrero import Guerrero
-
-Class Saiyayin (Guerrero):
-=======
 from poo_guerrero import Guerrero
 
 class Saiyayin (Guerrero):
->>>>>>> eae7082 (feat(2026-10-21): agregar proyecto django y actualizacion de python)
     nombre: str
     def __init__(self, nombre: str):
-        self.nombre = nombre
+        super().__init__(nombre)
 
     def presentarse(self):
         print("Mi poderoso nombre es:", self.nombre)

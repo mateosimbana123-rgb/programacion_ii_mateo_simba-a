@@ -1,5 +1,5 @@
 from django.urls import path
-from catalogo.views.authentication import BibliotecaLoginView, BibliotecaLogoutView
+from catalogo.views.authentication_views import BibliotecaLoginView, BibliotecaLogoutView
 
 urlpatterns = [
     path('login/', BibliotecaLoginView.as_view(), name='login'),

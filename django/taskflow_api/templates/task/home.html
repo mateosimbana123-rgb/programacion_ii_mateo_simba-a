@@ -4,6 +4,7 @@
 <p>{{ mensaje }}</p>
 
 <h2>Proyectos Recientes</h2>
+<p><a href="{% url 'tasks:project-create' %}">Crear proyecto</a></p>
 
 <table>
     <thead>
@@ -11,18 +12,33 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Fecha de Creación</th>
+            <th>Tareas</th>
         </tr>
     </thead>
     <tbody>
         {% for project in projects %}
         <tr>
-            <td>{{ project.name }}</td>
+            <td><a href="{% url 'tasks:project-update' project.pk %}">{{ project.name }}</a></td>
             <td>{{ project.description|default:"Sin descripción disponible." }}</td>
             <td>{{ project.created_at|date:"d/m/Y" }}</td>
+            <td>
+                {% for task in project.tasks.all %}
+                    <div>
+                        {{ task.title }} — {{ task.get_status_display }}
+                        <a href="{% url 'tasks:task-update' task.pk %}">Editar</a>
+                        <form method="post" action="{% url 'tasks:task-delete' task.pk %}" style="display:inline">
+                            {% csrf_token %}
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </div>
+                {% empty %}
+                    Sin tareas
+                {% endfor %}
+            </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="3">No hay proyectos registrados aún.</td>
+            <td colspan="4">No hay proyectos registrados aún.</td>
         </tr>
         {% endfor %}
     </tbody>

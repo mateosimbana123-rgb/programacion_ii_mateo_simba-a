@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required, permission_required
 from catalogo.models.libro import Libro
@@ -16,8 +16,10 @@ def libro_list(request):
         libros = libros.filter(
             Q(titulo__icontains=pista) |
             Q(autor__icontains=pista) |
+            Q(autores__nombre__icontains=pista) |
+            Q(autores__apellido__icontains=pista) |
             Q(categoria__nombre__icontains=pista)
-        )
+        ).distinct()
     if categoria_id:
         libros = libros.filter(categoria_id=categoria_id)
         
@@ -40,12 +42,12 @@ def create_libro(request):
             return redirect('libro_list')
     else:
         form = LibroForm()
-    return render(request, 'catalogo/libro/libro_form.html', {'form': form})
+    return render(request, 'catalogo/libros/formulario.html', {'form': form})
 
 @login_required
 @permission_required('catalogo.change_libro')
 def libro_update(request, pk):
-    libro = Libro.objects.get(pk=pk)
+    libro = get_object_or_404(Libro, pk=pk)
     if request.method == 'POST':
         form = LibroForm(request.POST, instance=libro)
         if form.is_valid():
@@ -53,13 +55,13 @@ def libro_update(request, pk):
             return redirect('libro_list')
     else:
         form = LibroForm(instance=libro)
-    return render(request, 'catalogo/libro/libro_form.html', {'form': form})
+    return render(request, 'catalogo/libros/formulario.html', {'form': form})
 
 @login_required
 @permission_required('catalogo.delete_libro')
 def libro_delete(request, pk):
-    libro = Libro.objects.get(pk=pk)
+    libro = get_object_or_404(Libro, pk=pk)
     if request.method == 'POST':
         libro.delete()
         return redirect('libro_list')
-    return render(request, 'catalogo/libro/libro_confirm_delete.html', {'libro': libro})
+    return render(request, 'catalogo/libros/confirm_delete.html', {'libro': libro})

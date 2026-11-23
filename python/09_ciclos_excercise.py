@@ -32,7 +32,7 @@ for numero, nave in enumerate (naves, start = 1):
         print("Estado inicial: RECARGAR")
         naves_recargada += 1
         ciclo = 0
-        while nave ["combustible"] <= 50:
+        while nave ["combustible"] < 50:
             ciclo += 1
             nave ["combustible"] += 10
         total_ciclos += ciclo

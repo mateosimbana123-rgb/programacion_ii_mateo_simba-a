@@ -41,7 +41,6 @@ print("========ANTES DE RECARGAR===============")
 androide17.mostrar_energia()
 androide17.recargar (100)
 print("========DESPUES DE RECARGAR========== ")
-<<<<<<< HEAD
 androide17.mostrar_energia()
 
 class AlmacenSemillas:
@@ -83,6 +82,3 @@ almacen_karin.entregar_semillas(9)
 
 # Muestra la cantidad final disponible
 print(f"Cantidad final disponible en el almacén: {almacen_karin.get_cantidad()}")
-=======
-androide17.mostrar_energia()
->>>>>>> eae7082 (feat(2026-10-21): agregar proyecto django y actualizacion de python)

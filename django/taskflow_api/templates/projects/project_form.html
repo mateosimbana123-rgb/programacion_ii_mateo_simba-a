@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{% if modo == "crear" %}Nuevo Proyecto{% else %}Editar Proyecto{% endif %}</h1>
+<h1>{% if modo == "crear" %}Nuevo proyecto{% else %}Editar proyecto{% endif %}</h1>
 
 <form method="post">
     {% csrf_token %}

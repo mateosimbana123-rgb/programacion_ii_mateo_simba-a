@@ -1,15 +1,16 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from catalogo.models.libro import Libro
+from catalogo.models import Autor
 
 class AutorForm(forms.ModelForm):
     class Meta:
         model = Autor
-        fields = ['nombre', 'nacionalidad', 'fecha_nacimiento']
+        fields = ['nombre', 'apellido', 'fecha_nacimiento', 'nacionalidad']
         widgets = {
-            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
-            'autor': forms.TextInput(attrs={'class': 'form-control'}),
-            'fecha_publicacion': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'categoria': forms.Select(attrs={'class': 'form-control'}),
-            'isbn': forms.TextInput(attrs={'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha_nacimiento': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date',
+            }),
+            'nacionalidad': forms.TextInput(attrs={'class': 'form-control'}),
         }

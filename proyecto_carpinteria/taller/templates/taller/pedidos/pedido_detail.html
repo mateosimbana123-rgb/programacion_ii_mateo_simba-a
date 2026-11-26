@@ -1,0 +1,8 @@
+{% extends 'taller/base.html' %}
+{% block content %}
+<h1>Pedido #{{ pedido.pk }}</h1>
+<p>Cliente: <a href="{% url 'cliente_detail' pedido.cliente.pk %}">{{ pedido.cliente }}</a></p>
+<p>Mueble: <a href="{% url 'mueble_detail' pedido.mueble.pk %}">{{ pedido.mueble }}</a></p>
+<p>Cantidad: {{ pedido.cantidad }} | Estado: {{ pedido.get_estado_display }} | Fecha: {{ pedido.fecha_pedido }}</p>
+<p>{{ pedido.observaciones }}</p>
+{% endblock %}

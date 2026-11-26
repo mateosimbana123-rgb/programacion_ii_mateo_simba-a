@@ -1,0 +1,9 @@
+{% extends 'taller/base.html' %}
+{% block content %}
+<h1>{{ mueble.nombre }}</h1>
+<p>{{ mueble.descripcion }}</p>
+<p>Categoría: <a href="{% url 'categoria_detail' mueble.categoria.pk %}">{{ mueble.categoria }}</a></p>
+<p>Precio: {{ mueble.precio }} | Stock: {{ mueble.stock }}</p>
+<h2>Pedidos relacionados</h2>
+<ul>{% for pedido in mueble.pedidos.all %}<li><a href="{% url 'pedido_detail' pedido.pk %}">{{ pedido }}</a></li>{% empty %}<li>No hay pedidos.</li>{% endfor %}</ul>
+{% endblock %}

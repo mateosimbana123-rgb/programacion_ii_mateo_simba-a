@@ -24,7 +24,24 @@
         <a href="{% url 'cliente_list' %}">Clientes</a>
         <a href="{% url 'pedido_list' %}">Pedidos</a>
         <a href="/admin/">Administración</a>
+        {% if user.is_authenticated %}
+            <span>Usuario: {{ user.username }}</span>
+            <form method="post" action="{% url 'logout' %}" style="display:inline">
+                {% csrf_token %}
+                <button type="submit">Salir</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Entrar</a>
+            <a href="{% url 'registro' %}">Registrarse</a>
+        {% endif %}
     </nav>
-    <main>{% block content %}{% endblock %}</main>
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
 </body>
 </html>

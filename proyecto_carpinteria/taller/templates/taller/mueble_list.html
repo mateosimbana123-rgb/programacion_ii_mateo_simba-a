@@ -2,7 +2,7 @@
 {% block title %}Muebles{% endblock %}
 {% block content %}
 <h1>Muebles</h1>
-<a class="button" href="{% url 'mueble_create' %}">Nuevo mueble</a>
+{% if perms.taller.add_mueble %}<a class="button" href="{% url 'mueble_create' %}">Nuevo mueble</a>{% endif %}
 <form method="get" style="margin:18px 0">
     <input type="text" name="pista" value="{{ pista }}" placeholder="Buscar por nombre">
     <select name="categoria_id">

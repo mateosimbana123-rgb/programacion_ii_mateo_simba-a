@@ -1,0 +1,5 @@
+{% extends 'taller/base.html' %}
+{% block content %}
+<h1>{{ cliente }}</h1><p>Teléfono: {{ cliente.telefono }}</p><p>Email: {{ cliente.email }}</p><p>Dirección: {{ cliente.direccion }}</p>
+<h2>Pedidos</h2><ul>{% for pedido in cliente.pedidos.all %}<li><a href="{% url 'pedido_detail' pedido.pk %}">{{ pedido }}</a></li>{% empty %}<li>No hay pedidos.</li>{% endfor %}</ul>
+{% endblock %}

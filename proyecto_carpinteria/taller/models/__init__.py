@@ -1,1 +1,4 @@
-from .mueble import Categoria, Cliente, Mueble, Pedido
+from .categoria import Categoria
+from .cliente import Cliente
+from .mueble import Mueble
+from .pedido import Pedido

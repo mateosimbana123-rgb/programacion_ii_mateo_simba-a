@@ -1,0 +1,6 @@
+{% extends 'taller/base.html' %}
+{% block content %}
+<h1>{{ categoria.nombre }}</h1><p>{{ categoria.descripcion }}</p>
+<h2>Muebles</h2>
+<ul>{% for mueble in categoria.muebles.all %}<li><a href="{% url 'mueble_detail' mueble.pk %}">{{ mueble }}</a></li>{% empty %}<li>No hay muebles.</li>{% endfor %}</ul>
+{% endblock %}

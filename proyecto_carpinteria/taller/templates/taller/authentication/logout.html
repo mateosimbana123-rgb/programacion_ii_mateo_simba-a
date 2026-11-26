@@ -1,0 +1,8 @@
+{% extends 'taller/base.html' %}
+{% block content %}
+<h1>Cerrar sesión</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Salir</button>
+</form>
+{% endblock %}
